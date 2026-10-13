@@ -4,7 +4,7 @@
 
 Add a skill on your laptop, and your work account on your desktop has it tomorrow morning. Install an MCP server once, and it appears everywhere. Sign in to a brand-new account, and it starts with everything the others already have.
 
-![License: MIT](https://img.shields.io/badge/license-MIT-blue) ![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue) ![macOS | Windows | Linux](https://img.shields.io/badge/platform-macOS%20%7C%20Windows%20%7C%20Linux-lightgrey) ![Claude Code plugin](https://img.shields.io/badge/Claude%20Code-plugin-orange)
+MIT license · Python 3.8+ · macOS, Windows and Linux · Claude Code plugin
 
 If you run Claude Code under more than one account (work and personal, several clients, several machines), each one drifts. One has the good skills. Another has the MCP servers, a third the permission rules you tuned. Account Sync merges all of it into one set and keeps every account on it.
 
