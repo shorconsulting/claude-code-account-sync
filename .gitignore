@@ -2,6 +2,7 @@ __pycache__/
 *.pyc
 .DS_Store
 *.csync-tmp-*
+*-test-results.txt
 # Never commit a real hub, secrets or backups to this repo
 hub/
 secrets.json

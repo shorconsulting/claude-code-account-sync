@@ -160,7 +160,8 @@ Because sync is a union, deleting a skill in one account doesn't delete it elsew
 - Project-level config (a repo's `.claude/settings.json`, `.mcp.json`) is not synced; it already travels with the repo.
 - The hub stores files byte for byte (`.gitattributes` turns off line-ending conversion), so Git for Windows can't make the same skill look different on a PC and a Mac.
 - Scripts copied from a PC to a Mac or Linux account are made executable again automatically.
-- **Windows status:** the Windows-specific code (Task Scheduler, the `.cmd` command, hook commands, `.cmd`-safe MCP writes) is written to Windows conventions and checked by simulation, but hasn't yet been run on a real PC.
+- **Windows status:** tested on a real PC (Windows 11, Python 3.13) on 2026-10-12: all 37 checks in `tests/windows_check.py` passed, including the Task Scheduler task, the `.cmd` command, hook paths, `.cmd`-safe MCP writes, byte-for-byte copies through git, and the settings page.
+- **claude.ai connectors can't be added for you.** They live in each claude.ai account, so Account Sync lists what each account is missing and you add them at claude.ai/customize/connectors.
 
 ## Tests
 
@@ -169,6 +170,14 @@ bash tests/run_tests.sh
 ```
 
 Builds three fake accounts (one brand new) and a stub `claude` CLI in a temporary folder, runs a full sync, and checks the result (42 checks). The checks include a simulated second computer running Windows that shares the same hub, and the settings page's lock and input checks. Nothing outside that folder is touched.
+
+On Windows (or any computer without bash), run the same kind of check in Python:
+
+```powershell
+py -3 tests\windows_check.py
+```
+
+It uses a throwaway home folder with spaces in its path and a stand-in `claude.cmd`, and drives this computer's real `cmd.exe`, Task Scheduler format and settings page. Add `--real-scheduler` to also create a real scheduled task for a moment and delete it again. Nothing outside that folder is touched.
 
 ## License
 

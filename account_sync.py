@@ -2351,7 +2351,7 @@ class LocalPage:
                 raise ValueError("another action is still running")
             job = {"id": int(time.time() * 1000), "argv": argv, "running": True, "output": "", "code": None}
             self.job = job
-        env = dict(os.environ, GIT_TERMINAL_PROMPT="0", PYTHONUNBUFFERED="1")
+        env = dict(os.environ, GIT_TERMINAL_PROMPT="0", PYTHONUNBUFFERED="1", PYTHONIOENCODING="utf-8")
         env.setdefault("GIT_SSH_COMMAND", "ssh -o BatchMode=yes")
         # own process group: Ctrl+C or closing the page never interrupts a sync halfway,
         # and with no terminal attached nothing can sit waiting for a password prompt
@@ -2550,7 +2550,18 @@ def cmd_ui(args):
               Path(__file__).resolve(), port=args.port).serve(open_browser=not args.no_browser)
 
 
+def safe_console():
+    """Windows sends piped or redirected output through an old code page (e.g. cp1252) that can't
+    encode characters like "…" or "─". Show a "?" instead of crashing halfway through a run."""
+    for stream in (sys.stdout, sys.stderr):
+        try:
+            stream.reconfigure(errors="replace")
+        except (AttributeError, ValueError):
+            pass
+
+
 def main(argv=None):
+    safe_console()
     p = argparse.ArgumentParser(prog="account_sync.py", description="Keep all Claude Code accounts identical (union of everything).")
     p.add_argument("--version", action="version", version=VERSION)
     sub = p.add_subparsers(dest="cmd", required=True)
