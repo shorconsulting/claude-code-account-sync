@@ -1,0 +1,15 @@
+{
+  "name": "account-sync",
+  "description": "Account Sync: keep every Claude Code account on every computer identical.",
+  "owner": {
+    "name": "David Shor",
+    "url": "https://github.com/shorconsulting"
+  },
+  "plugins": [
+    {
+      "name": "account-sync",
+      "source": "./",
+      "description": "Keep every Claude Code account on every computer identical: settings, skills, agents, commands, MCP servers and plugins."
+    }
+  ]
+}

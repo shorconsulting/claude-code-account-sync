@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.DS_Store
+*.csync-tmp-*
+# Never commit a real hub, secrets or backups to this repo
+hub/
+secrets.json
+backups/
+config.json

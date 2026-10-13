@@ -1,0 +1,25 @@
+{
+  "name": "account-sync",
+  "displayName": "Account Sync",
+  "version": "1.0.0",
+  "description": "Keep every Claude Code account on every computer identical. Merges settings, skills, agents, commands, MCP servers and plugins from all your accounts into one set and syncs it daily across macOS, Windows and Linux.",
+  "author": {
+    "name": "David Shor",
+    "url": "https://github.com/shorconsulting"
+  },
+  "homepage": "https://github.com/shorconsulting/claude-code-account-sync",
+  "repository": "https://github.com/shorconsulting/claude-code-account-sync",
+  "documentationUrl": "https://github.com/shorconsulting/claude-code-account-sync#readme",
+  "supportUrl": "https://github.com/shorconsulting/claude-code-account-sync/issues",
+  "license": "MIT",
+  "keywords": [
+    "sync",
+    "settings",
+    "dotfiles",
+    "multi-account",
+    "skills",
+    "mcp",
+    "plugins",
+    "cross-platform"
+  ]
+}
