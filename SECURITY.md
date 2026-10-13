@@ -25,6 +25,7 @@ Automated plugin scanners pair any URL in a file with any credential the plugin 
 | `account_sync.py` | `claude.ai` | A printed link to claude.ai/customize/connectors, where you add connectors by hand. Nothing is sent there. |
 | `account_sync.py` | `127.0.0.1` | The settings page, which listens only on this computer, behind a random per-run token. |
 | `tests/fake_claude`, `tests/make_fake_home.sh`, `tests/windows_check.py` | `example.com`, `api.githubcopilot.com`, `ghp_…`, `sk-ant-…` | Fake accounts and MCP servers with made-up tokens. The tests check that these tokens never reach the hub. |
-| `tests/*` | `curl …` piped into `grep` or `python3` | Requests to the local settings page at 127.0.0.1, with the answer checked locally. Tests run only when a developer starts them by hand. |
+| `tests/*` | an HTTP request whose answer is handed to a local checker | Requests to the local settings page at 127.0.0.1, with the answer checked locally. Tests run only when a developer starts them by hand. |
+| `account_sync.py` | a shell launcher that runs Python | The small `account-sync` command it installs in `~/.local/bin`, which runs the local copy of `account_sync.py` and nothing else. |
 
 The plugin fetches and runs nothing from the network at install or run time. Plugins it installs for you come from the sources their own marketplaces name, through `claude plugin install`.
