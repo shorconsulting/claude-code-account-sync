@@ -30,6 +30,8 @@ Inside Claude Code:
 /plugin install account-sync --marketplace shorconsulting/claude-code-account-sync
 ```
 
+On an older Claude Code, add the marketplace first: `/plugin marketplace add shorconsulting/claude-code-account-sync`, then `/plugin install account-sync@account-sync`.
+
 Then ask Claude something like *"sync my Claude Code accounts"*. It runs the preview first and asks before changing anything.
 
 ### As a standalone tool
@@ -162,6 +164,16 @@ Because sync is a union, deleting a skill in one account doesn't delete it elsew
 - Scripts copied from a PC to a Mac or Linux account are made executable again automatically.
 - **Windows status:** tested on a real PC (Windows 11, Python 3.13) on 2026-10-12: all 37 checks in `tests/windows_check.py` passed, including the Task Scheduler task, the `.cmd` command, hook paths, `.cmd`-safe MCP writes, byte-for-byte copies through git, and the settings page.
 - **claude.ai connectors can't be added for you.** They live in each claude.ai account, so Account Sync lists what each account is missing and you add them at claude.ai/customize/connectors.
+
+## Privacy and data
+
+Account Sync has no telemetry and no server of its own. It reads and writes only:
+
+- **Your Claude Code config folders** on this computer (the items in [What it syncs](#what-it-syncs)), with a backup of every file it changes.
+- **Its hub**, `~/.account-sync/hub`, a local git repo. It is pushed only to the private remote you give `init --remote`, if any. Secrets are replaced with placeholders before anything is written to the hub; the real values stay in `~/.account-sync/secrets.json` (mode 600, never committed).
+- **The official `claude` CLI**, to add MCP servers, marketplaces and plugins. Installing a plugin downloads it from the source its marketplace names, as `claude plugin install` always does.
+
+The settings page listens on 127.0.0.1 only, behind a random per-run token. The source is one readable Python file, `account_sync.py`.
 
 ## Tests
 
