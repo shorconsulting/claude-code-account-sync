@@ -11,6 +11,7 @@
   "repository": "https://github.com/shorconsulting/claude-code-account-sync",
   "documentationUrl": "https://github.com/shorconsulting/claude-code-account-sync#readme",
   "supportUrl": "https://github.com/shorconsulting/claude-code-account-sync/issues",
+  "privacyPolicyUrl": "https://github.com/shorconsulting/claude-code-account-sync/blob/main/PRIVACY.md",
   "license": "MIT",
   "keywords": [
     "sync",

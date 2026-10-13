@@ -167,7 +167,7 @@ Because sync is a union, deleting a skill in one account doesn't delete it elsew
 
 ## Privacy and data
 
-Account Sync has no telemetry and no server of its own. It reads and writes only:
+The full [Privacy](PRIVACY.md) policy is in `PRIVACY.md`. In short: Account Sync has no telemetry and no server of its own. It reads and writes only:
 
 - **Your Claude Code config folders** on this computer (the items in [What it syncs](#what-it-syncs)), with a backup of every file it changes.
 - **Its hub**, `~/.account-sync/hub`, a local git repo. It is pushed only to the private remote you give `init --remote`, if any. Secrets are replaced with placeholders before anything is written to the hub; the real values stay in `~/.account-sync/secrets.json` (mode 600, never committed).
