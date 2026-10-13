@@ -175,6 +175,10 @@ Account Sync has no telemetry and no server of its own. It reads and writes only
 
 The settings page listens on 127.0.0.1 only, behind a random per-run token. The source is one readable Python file, `account_sync.py`.
 
+### Credentials it handles, and why
+
+Your accounts' settings and MCP servers can contain tokens and API keys, for example an MCP server's `Authorization` header or a `GITHUB_TOKEN` in settings `env`. Account Sync reads them only to keep them out of the shared hub. Each value is swapped for a `${CSYNC_…}` placeholder before anything is written to the hub, and the real value goes to `~/.account-sync/secrets.json` (mode 600, never committed). When an account needs it, the value is written back into that account's own config on this computer, and an API key you enter on the settings page is stored the same way. Sign-in files (`.credentials.json`, OAuth state in `.claude.json`) are never touched. Account-specific values such as `ANTHROPIC_API_KEY` and `CLAUDE_CODE_OAUTH_TOKEN` stay in their own account and are never copied to the hub or to another account. No credential is sent anywhere. These can't be Claude Code `userConfig` values, because they belong to the MCP servers and settings you already have, not to this plugin.
+
 ## Tests
 
 ```bash
